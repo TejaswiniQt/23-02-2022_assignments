@@ -1,0 +1,95 @@
+1. Difference between array of pointer and pointer to an array?
+
+   Pointer to an array: We use pointer to access the elements of the array
+                        In pointer to an array pointer points to whole array(not a single element in the array)
+    ex: int (*ptr)[5];
+        Here ptr is pointer to an array of 5 interger elements
+         
+        ex: #include<stdio.h>
+            int main()
+            {
+              int arr[5]={10,20,30,40,50};
+              int (*ptr)[5]; 
+              ptr=&arr; //here ptr is pointing to whole array
+              for(int i=0;i<5;i++)
+              {
+               printf("%d ",*((*ptr)+i));
+               }
+               printf("\n");
+              return 0;
+              }
+       
+  Array of pointer: An array which stores the references(address) of the elments 
+                    Also called as arry of pointer variables
+            ex: int *ptr[5]; 
+               Here ptr is an array of int pointer type which can hold address of 5  interger elements     
+          
+            ex:#include<stdio.h>
+               int main()
+               {
+                int arr[5]={10,20,30,40,50};
+                int *ptr[5];
+                for(int i=0;i<5;i++)
+                {
+                    *(ptr+i)=(arr+i);  
+                 }    
+                for(int i=0;i<5;i++)
+                {
+                    printf("%d ",**(ptr+i));  
+                 } 
+                 printf("\n");
+                 return 0;
+              }        
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+2.Difference between structure and uninon?
+
+       structure                                                            union
+->The keyword struct is used to create the                    ->The keyword union is used to create a union
+ structure
+->The size of the structure is equal to size                  ->The size of the union is equal to the largest member 
+ of all the members in the struture                             union
+->Each member in the strucure isassigned a unique             ->Memory allocated is shared by individual membres
+  memory location                                               of the union
+->Altering the value of the member will not                   ->Altering the value of any member will alter the other
+  affect the value of other members of the structure            members value
+->Individual members can be accessed at a time                ->Only one member can be accessed at a time
+->Several members of structure can be initialized             ->Only the first member of union can be initialized
+ at once
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+3.Difference between strcpy() and memcpy() ?
+
+
+             strcpy()                                                  memcpy()
+->strcpy() function is used to copy the contents              ->memcpy() function is used to copy a specified number 
+ of one string to another string                                of bytes from one memory to another
+->strcpy() function acts on value rather than                 ->memcpy() function acts on memory rather than value
+  memory
+->char *strcpy(char *dst, const char *src);                   ->void* memcpy(void *restrict out, const void *restrict in, size_t n);
+  This will copy stringfrom source(src) to                      This will copy n number of memory bytes from memory pointing
+  destination(dst)                                              to in to the memory pointing to out
+->strcpy() is meant for strings only                          ->Generic function to copy bytes fromsource to destination location
+->Works on null-terminated strings and has                    ->Works on fixed length of arbitary data
+ no length limitations
+->strcpy() is used to copy variable length                    ->memcpy() is used to copy the exact amount of data
+ null terminated strings
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+4.Why we need char pointer in implementing own sizeof() operator?
+  
+  ex:  int x;
+       printf("size of x is %zu\n",((char*)(&x+1) - (char*)(&x)));
+
+  Here if say, &x=1000 then if we do x+1 it becomes 1004 whrer next int type varible can be stored
+ difference gives how many varibles of type int can be stored in that memory i.e 1 for type int
+ typecasting int char* and taking the difference will give how many varibles of type char can
+ be stored in the given memory space .each char requires onlyone byte of memory.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
