@@ -5,18 +5,18 @@
 #include <stdio.h>
 #include <string.h>
 
-void myMemcopy(char *src,char *des,int len);
+void myMemcopy(char *des,char *src,int len);
 
 int main()
 {
     char src[]="abc abc abc";
     char des[50];
     int len=strlen(src);
-    myMemcopy(src,des,len);
+    myMemcopy(des,src,len);
     printf("Copied string is %s\n",des);
     return 0;
 }
-void myMemcopy(char *src,char *des,int len)
+void myMemcopy(char *des,char *src,int len)
 {
     int i;
     for(i=0;i<len;i++)
